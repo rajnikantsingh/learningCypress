@@ -5,6 +5,7 @@ node_modules
 /dist
 /tmp
 /out-tsc
+/videos
 
 # Runtime data
 pids
