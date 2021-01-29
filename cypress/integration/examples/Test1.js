@@ -20,5 +20,10 @@ describe("My First Test", () => {
 					element.find("button").click();
 				}
 			});
+		console.log(
+			cy.get(".brand").then(function (logoElement) {
+				cy.log(logoElement.text());
+			}),
+		);
 	});
 });
