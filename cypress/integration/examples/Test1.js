@@ -11,9 +11,11 @@ describe("My First Test", () => {
 		cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
 		cy.get(".search-keyword").type("ca");
 		cy.wait(2000);
-		cy.get(".products").find(".product").should("have.length", 4);
-		cy.get(".products").find(".product").eq(2).contains("ADD TO CART").click();
-		cy.get(".products")
+		cy.get(".products").as("Products");
+
+		cy.get("@Products").find(".product").should("have.length", 4);
+		cy.get("@Products").find(".product").eq(2).contains("ADD TO CART").click();
+		cy.get("@Products")
 			.find(".product")
 			.each((element) => {
 				if (element.find(".product-name").text().includes("Cauliflower")) {
