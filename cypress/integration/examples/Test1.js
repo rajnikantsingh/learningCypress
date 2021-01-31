@@ -14,7 +14,14 @@ describe("My First Test", () => {
 		cy.get(".products").as("Products");
 
 		cy.get("@Products").find(".product").should("have.length", 4);
-		cy.get("@Products").find(".product").eq(2).contains("ADD TO CART").click();
+		cy.get("@Products")
+			.find(".product")
+			.eq(2)
+			.contains("ADD TO CART")
+			.click()
+			.then(() => {
+				console.log("Added to cart"); //  Prints in Browser
+			});
 		cy.get("@Products")
 			.find(".product")
 			.each((element) => {
@@ -22,10 +29,10 @@ describe("My First Test", () => {
 					element.find("button").click();
 				}
 			});
-		console.log(
-			cy.get(".brand").then(function (logoElement) {
-				cy.log(logoElement.text());
-			}),
-		);
+		cy.get(".brand").then(function (logoElement) {
+			cy.log(logoElement.text()); // Prints in test runner
+		});
+		//assertion
+		cy.get(".brand").should("have.text", "GREENKART");
 	});
 });
