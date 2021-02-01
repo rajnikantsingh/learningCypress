@@ -23,5 +23,12 @@ describe("Doing AUtomation Practice", () => {
 		});
 		cy.get("#autocomplete").should("have.value", "India");
 	});
+	it("Check visiblity of element", () => {
+		cy.get("#displayed-text").should("be.visible");
+		cy.get("#hide-textbox").click();
+		cy.get("#displayed-text").should("be.not.visible");
+		cy.get("#show-textbox").click();
 
+		cy.get("#displayed-text").should("be.visible");
+	});
 });
