@@ -11,4 +11,17 @@ describe("Doing AUtomation Practice", () => {
 			.check(["option2", "option1"])
 			.should("be.checked");
 	});
+	it("Lets try the Static dropdown", () => {
+		cy.get("select").select("option2").should("have.value", "option2");
+	});
+	it("Lets try the Dynamic dropdown", () => {
+		cy.get("#autocomplete").type("ind");
+		cy.get(".ui-menu-item div").each((element) => {
+			if (element.text() === "India") {
+				element.click();
+			}
+		});
+		cy.get("#autocomplete").should("have.value", "India");
+	});
+
 });
