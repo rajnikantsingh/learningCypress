@@ -26,4 +26,18 @@ describe("Testing Advanced Concepts", () => {
 			"https://rahulshettyacademy.com/AutomationPractice/",
 		);
 	});
+	it("Deal with Tables", () => {
+		cy.get("tr td:nth-child(2)").each((element, index) => {
+			const tableText = element.text();
+			if (tableText.includes("Python")) {
+				cy.get("tr td:nth-child(2)")
+					.eq(index)
+					.next()
+					.then((price) => {
+						const priceText = price.text();
+						expect(priceText).to.eql("25");
+					});
+			}
+		});
+	});
 });
