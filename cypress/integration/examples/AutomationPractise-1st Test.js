@@ -26,9 +26,12 @@ describe("Doing AUtomation Practice", () => {
 	it("Check visiblity of element", () => {
 		cy.get("#displayed-text").should("be.visible");
 		cy.get("#hide-textbox").click();
-		cy.get("#displayed-text").should("be.not.visible");
+		cy.get("#displayed-text").should("not.be.visible");
 		cy.get("#show-textbox").click();
 
 		cy.get("#displayed-text").should("be.visible");
+	});
+	it("Select Radio Button", () => {
+		cy.get('input[value="radio2"]').check().should("be.checked");
 	});
 });
