@@ -18,5 +18,12 @@ describe("Testing Advanced Concepts", () => {
 	it("Try to open tab in new window", () => {
 		// Cypress cant deal with new tab. BUt we can remove target from DOM so that it opens in same tab
 		cy.get("#opentab").invoke("removeAttr", "target").click();
+		cy.url().should("include", "https://www.rahulshettyacademy.com/#/index");
+		//Navigate Back
+		cy.go("back");
+		cy.url().should(
+			"include",
+			"https://rahulshettyacademy.com/AutomationPractice/",
+		);
 	});
 });
