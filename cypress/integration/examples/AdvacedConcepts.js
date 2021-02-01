@@ -40,4 +40,11 @@ describe("Testing Advanced Concepts", () => {
 			}
 		});
 	});
+	it("Mouse Over Manipulation", () => {
+		cy.get("div.mouse-hover-content").invoke("show"); // on immediate parent
+		cy.contains("Top").click();
+		// cy.contains("Top").click({ force: true }); can also be used
+
+		cy.url().should("include", "top");
+	});
 });
