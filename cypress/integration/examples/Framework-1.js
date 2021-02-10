@@ -1,6 +1,9 @@
 /// <reference types="Cypress" />
+import HomePage from "../pageObjects/HomePage.js";
 
 describe("Test Framework 1", function () {
+	const homePage = new HomePage();
+
 	before(function () {
 		cy.visit("https://rahulshettyacademy.com/angularpractice");
 	});
@@ -11,25 +14,21 @@ describe("Test Framework 1", function () {
 	});
 
 	it("Validate Attribute Property - TWo Way Binding", function () {
-		cy.get('input[name="name"]:nth-child(2)').type(this.data.name);
-		cy.get("select").select(this.data.gender);
-		cy.get(":nth-child(4) > .ng-pristine").should("have.value", this.data.name);
+		homePage.getEditBox().type(this.data.name);
+		homePage.getGender().select(this.data.gender);
+		homePage.getTwoWayBindingElement().should("have.value", this.data.name);
 	});
 	it("should have min length validation", function () {
 		console.log(this.data.productNames);
 
-		cy.get('input[name="name"]:nth-child(2)').should(
-			"have.attr",
-			"minlength",
-			2,
-		); // can also use promise to get prop
+		homePage.getEditBox().should("have.attr", "minlength", 2); // can also use promise to get prop
 	});
 	it("should be disabled", function () {
-		cy.get("#inlineRadio3").should("be.disabled"); // behaviour should be = BE , Property = have
+		homePage.getEntrepreneur().should("be.disabled"); // behaviour should be = BE , Property = have
 	});
 
 	it("Navigate to Shop", function () {
-		cy.get(":nth-child(2) > .nav-link").click();
+		homePage.getShopTab().click();
 		this.data.productNames.forEach(function (prodName) {
 			cy.addProduct(prodName);
 		});
