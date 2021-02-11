@@ -5,7 +5,7 @@ describe("Test Framework 1", function () {
 	const homePage = new HomePage();
 
 	before(function () {
-		cy.visit("https://rahulshettyacademy.com/angularpractice");
+		cy.visit(Cypress.env("url"));
 	});
 	beforeEach(function () {
 		cy.fixture("example").then(function (data) {
